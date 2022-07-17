@@ -3,7 +3,7 @@ SELECT s.StudentName, ms.AssessmentID, ms.VALUE
 FROM Mark_Students ms INNER JOIN Students s ON s.StudentID = ms.StudentID
 ORDER BY ms.VALUE desc
 
---thong tin cua tung hoc sinh
+--thong tin va diem cua tung hoc sinh
 SELECT * 
 FROM Students s INNER JOIN Mark_Students ms ON s.StudentID = ms.StudentID
 
@@ -65,5 +65,13 @@ WHERE StudentID = 1
 
 SELECT * FROM Mark_Students
 
---STORE PROCEDURE
+--STORE PROCEDURE: thong tin va chu nhiem cua tung hoc sinh
+CREATE PROCEDURE info_student AS
+SELECT s.StudentID,s.StudentName,s.Gender,s.[Date of birth],s.Address,l.LectureName 
+FROM Students s INNER JOIN Group_Students gs ON s.StudentID = gs.StudentID
+				INNER JOIN Lecture l ON gs.LectureID = l.LectureID
+ORDER BY s.[Date of birth]
 
+EXEC info_student
+
+--INDEX
