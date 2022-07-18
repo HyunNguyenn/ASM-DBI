@@ -52,7 +52,7 @@ FROM Assessment a1 INNER JOIN Assessment a2 ON a1.AssessmentID = a2.AssessmentID
 WHERE a2.SemesterID = 3 AND a1.ResultID = 3
 
 --TRIGGER : xoa diem cua hoc sinh sau do thay bang diem moi
-CREATE TRIGGER xoa_diem ON Mark_Students
+CREATE TRIGGER delete_mark ON Mark_Students
 AFTER DELETE
 AS
 	BEGIN
@@ -74,4 +74,6 @@ ORDER BY s.[Date of birth]
 
 EXEC info_student
 
---INDEX
+--INDEX: Display infomation of mark students table
+CREATE INDEX find_min_mark_student ON [Mark_Students](StudentID)
+SELECT * FROM Mark_Students
